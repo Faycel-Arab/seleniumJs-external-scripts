@@ -24,9 +24,10 @@ function toggleWindow(){
  * send a request for RDV ( appointement ) 
  * @date {string} : yyyy-mm-dd hh:mm	
  */
-function askForRDV( date ){
-	console.log( date );
+function askForRDV( e ){
+	console.log( e.target.innerText );
 }
+
 /**
  * send an ajax request within the page
  * @date {string} : yyyy-mm-dd hh:mm
