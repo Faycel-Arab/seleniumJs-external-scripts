@@ -50,7 +50,7 @@ function getDates(){
 	});
 	
 	
-	console.log( DATES);
+	return DATES;
 }
 
 /**
