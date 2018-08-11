@@ -26,6 +26,34 @@ function toggleWindow(){
 }
 
 /**
+ * return an array of { day , time } objects
+ */
+function getDates(){
+	
+	// init empty DATES arrays
+	var DATES = [];
+	
+	// select open dates elements
+	var d = document.querySelectorAll('.dispo');
+	
+	// loop through encountered open dates elements
+	d.forEach( function( item, i ){
+		
+		var day = item.parentNode.innerText.split(' ')[0]; // grab day
+		var time = item.innerText; // grab time
+		
+		// populate DATES array
+		DATES.push({
+			date: day,
+			time: time
+		}); 
+	});
+	
+	
+	console.log( DATES);
+}
+
+/**
  * send a request for RDV ( appointement ) 
  * @date {string} : yyyy-mm-dd hh:mm	
  */
