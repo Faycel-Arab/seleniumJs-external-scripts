@@ -1,6 +1,11 @@
 /***		 Aliases			**/
-var d = document;
-var $ = d.querySelector;
+var d = function(){
+	return document;
+}
+
+var $ = function( sel ){
+	return document.querySelector( sel );
+}
 
 /** 
  * toggle display of Interactive window, minimize button & miniature window 
