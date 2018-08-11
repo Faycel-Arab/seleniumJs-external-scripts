@@ -13,16 +13,16 @@ var $ = function( sel ){
 function toggleWindow(){
 	
 	// toggle Inetraction window
-	var IWD = $("#IW").style.display;
-	IWD === "none" ? IWD = "block" : IWD = "none";
+	var IWD = $("#IW");
+	IWD.style.display=== "none" ? IWD.style.display = "block" : IWD.style.display = "none";
 	
 	// toggle minimize button
-	var MBD = $("#CB").style.display;
-	MBD === "none" ? MBD = "block" : MBD = "none";
+	var MBD = $("#CB");
+	MBD.style.display === "none" ? MBD.style.display = "block" : MBD.style.display = "none";
 	
 	// toggle miniature window
-	var MWD = $("#MW").style.display;
-	MWD === "none" ? MWD = "block" : MWD = "none";
+	var MWD = $("#MW");
+	MWD.style.display === "none" ? MWD.style.display = "block" : MWD.style.display = "none";
 }
 
 /**
