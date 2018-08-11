@@ -17,7 +17,7 @@ function toggleWindow(){
 	IWD === "none" ? IWD = "block" : IWD = "none";
 	
 	// toggle minimize button
-	var MBD = $("#MB").style.display;
+	var MBD = $("#CB").style.display;
 	MBD === "none" ? MBD = "block" : MBD = "none";
 	
 	// toggle miniature window
