@@ -3,6 +3,10 @@ var $a = function( sel ){
 	return document.querySelector( sel );
 }
 
+
+
+var ModalExist = false;
+
 /** 
  * toggle display of Interactive window, minimize button & miniature window 
  */
@@ -55,13 +59,125 @@ function getDates(){
  */
 function askForRDV(){
 	
-	ajaxPost( "action.php", event.target.innerText );
+	displayConfirmModal( event.target.innerText );
 }
 
 function displayConfirmModal( date ){
 	
+	//  grab url 
+	var url = window.location.href;
+	
+	// grab user Id from current url
+	// this only works when user is connected as the id is the parameter 
+	var userId = url.substr( url.indexOf('=')+1, url.length-1 );
+
+		
+	if( !ModalExist ){
+		
+		var con = document.createElement("div");
+		con.setAttribute( "id", "ccff");
+		
+		document.body.appendChild(con);
+			
+		var f = document.createElement('form');
+			f.setAttribute( "method", "post");
+			f.setAttribute( "action", "https://fr.tlscontact.com/dz/ORN/action.php");
+			f.setAttribute( "name", "ajax_confirm_action");
+			f.setAttribute( "id", "ajax_confirm_action");
+			f.setAttribute( "onsubmit", "ajaxPostForm(this, &quot;multiconfirm&quot;, true); return false;");
+			
+		con.appendChild(f);
+		
+		var ifid = document.createElement("input");
+			ifid.setAttribute( "type", "hidden");
+			ifid.setAttribute( "name", "f_id");
+			ifid.setAttribute( "id", "f_id");
+			ifid.setAttribute( "value", userId );
+			
+		f.appendChild(ifid);
+		
+		var what = document.createElement("input");
+			what.setAttribute( "type", "hidden");
+			what.setAttribute( "name", "what");
+			what.setAttribute( "id", "what");
+			what.setAttribute( "value", "book_appointment");
+			
+		f.appendChild(what);
+		
+		var rslt = document.createElement("input");
+			rslt.setAttribute( "type", "hidden");
+			rslt.setAttribute( "name", "result");
+			rslt.setAttribute( "id", "result");
+			rslt.setAttribute( "value", date);
+			
+		f.appendChild(rslt);
+		
+		var auid = document.createElement("input");
+			auid.setAttribute( "type", "hidden");
+			auid.setAttribute( "name", "as_u_id");
+			auid.setAttribute( "id", "as_u_id");
+			auid.setAttribute( "value", "");
+			
+		f.appendChild(auid);
+		
+		
+		var _sid = document.createElement("input");
+			_sid.setAttribute( "type", "hidden");
+			_sid.setAttribute( "name", "_sid");
+			_sid.setAttribute( "id", "_sid");
+			_sid.setAttribute( "value", secret_id);
+			
+		f.appendChild(_sid);
+		
+		var conf = document.createElement("input");
+			conf.setAttribute( "type", "submit");
+			conf.setAttribute( "id", "ajaxConfirmCall_submit");
+			conf.setAttribute( "value", "Confirmer");
+			
+		f.appendChild(_sid);
+		
+		var cbtn = document.createElement("div");
+			cbtn.setAttribute( "id", "cancelBtn");
+			cbtn.textContent = "Cancel";
+			
+		con.appendChild(cbtn);
+			
+		$a("#cancelBtn").style.padding = "3px 6px";
+		$a("#cancelBtn").style.color = "white";
+		$a("#cancelBtn").style.background = "black";
+		$a("#cancelBtn").style.textAlign = "center";
+		$a("#cancelBtn").style.margin = "0 auto";
+		$a("#cancelBtn").style.width = "250px";
+		
+		$a("#cancelBtn").addEventListener( "click", function(){
+			
+			$a("#ccff").style.display = "none";
+		});
+			
+			
+			
+		f.appendChild(_sid);
+		
+		// add styling
+		$a("#ccff").style.zIndex = 10002;
+		$a("#ccff").style.margin = "auto";
+		$a("#ccff").style.display = "inline-block";
+		
+		ModalExist = true;
+		
+	}
+	
+	else{
+		
+		$a("#ccff").style.display = "block";
+		
+		$a("#result").value = date;
+	}
+	
+
 }
 
+	  
 /**
  * send an ajax request within the page
  * @date {string} : yyyy-mm-dd hh:mm
@@ -100,8 +216,6 @@ function ajaxPost( target, date ){
 			if( req.readyState === 4 && req.status === 200 )
 				alert( req.response );
 			
-			else 
-				alert("Something unexpected happened");
 		}
 		
 		req.onerror = function(){
