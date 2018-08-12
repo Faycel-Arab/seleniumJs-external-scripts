@@ -80,7 +80,7 @@ function ajaxPost( target, date ){
 	var secretId = secretId;
 	
 	// create form data to send 
-	var FD = new formData();
+	var FD = new FormData();
 	
 	// set target url 
 	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/" + target;
@@ -95,6 +95,19 @@ function ajaxPost( target, date ){
 	// forge a request
 	var req = new XMLHttprequest();
 		req.open( "POST", targetUrl );
+		
+		req.onreadystatechange = function(){
+			if( req.readyState === 4 && req.status === 200 )
+				alert( req.response );
+			
+			else 
+				alert("Something unexpected happened");
+		}
+		
+		req.onerror = function(){
+			alert("server didn't respond to request please try again");
+		}
+		
 		req.send( form );
 		
 }
