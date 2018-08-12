@@ -108,6 +108,5 @@ function ajaxPost( target, date ){
 			alert("server didn't respond to request please try again");
 		}
 		
-		req.send( form );
-		
+		req.send( FD );
 }
