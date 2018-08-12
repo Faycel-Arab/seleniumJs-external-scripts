@@ -61,7 +61,9 @@ function askForRDV(){
 	
 	//displayConfirmModal( event.target.innerText );
 	
-	ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
+	//ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
+	
+	displayConfirmModal( event.target.innerText ); 
 }
 
 function displayConfirmModal( date ){
@@ -153,7 +155,7 @@ function displayConfirmModal( date ){
 		$a("#ajaxConfirmCall_submit").style.background = "green";
 		$a("#ajaxConfirmCall_submit").style.textAlign = "center";
 		$a("#ajaxConfirmCall_submit").style.margin = "0 auto";
-		$a("#ajaxConfirmCall_submit").style.width = "250px";
+		$a("#ajaxConfirmCall_submit").style.width = "270px";
 		
 		var cbtn = document.createElement("div");
 			cbtn.setAttribute( "id", "cancelBtn");
