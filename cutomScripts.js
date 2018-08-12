@@ -57,8 +57,13 @@ function getDates(){
  * send a request for RDV ( appointement ) 
  * @date {string} : yyyy-mm-dd hh:mm	
  */
-function askForRDV(  ){
-	console.log( event.target.innerText );
+function askForRDV(){
+	
+	ajaxPost( "action.php", event.target.innerText );
+}
+
+function displayConfirmModal( date ){
+	
 }
 
 /**
@@ -82,7 +87,7 @@ function ajaxPost( target, date ){
 	var FD = newformData();
 	
 	// set target url 
-	var targetUrl = window.location.hostname + target;
+	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/" + target;
 	
 	// forge the form
 	FD.append( "f_id", "" );
