@@ -93,7 +93,7 @@ function ajaxPost( target, date ){
 	FD.append( "Sid", secretId );
 	
 	// forge a request
-	var req = new XMLHttprequest();
+	var req = new XMLHttpRequest();
 		req.open( "POST", targetUrl );
 		
 		req.onreadystatechange = function(){
