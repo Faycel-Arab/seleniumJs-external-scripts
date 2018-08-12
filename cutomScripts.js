@@ -59,7 +59,9 @@ function getDates(){
  */
 function askForRDV(){
 	
-	displayConfirmModal( event.target.innerText );
+	//displayConfirmModal( event.target.innerText );
+	
+	ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
 }
 
 function displayConfirmModal( date ){
