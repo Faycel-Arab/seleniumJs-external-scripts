@@ -80,7 +80,7 @@ function ajaxPost( target, date ){
 	var secretId = secretId;
 	
 	// create form data to send 
-	var FD = newformData();
+	var FD = new formData();
 	
 	// set target url 
 	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/" + target;
