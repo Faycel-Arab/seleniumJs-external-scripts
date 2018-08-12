@@ -57,8 +57,8 @@ function getDates(){
  * send a request for RDV ( appointement ) 
  * @date {string} : yyyy-mm-dd hh:mm	
  */
-function askForRDV( e ){
-	console.log( e.target.innerText );
+function askForRDV(  ){
+	console.log( event.target.innerText );
 }
 
 /**
