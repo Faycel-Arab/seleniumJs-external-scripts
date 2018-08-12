@@ -134,7 +134,16 @@ function displayConfirmModal( date ){
 			conf.setAttribute( "id", "ajaxConfirmCall_submit");
 			conf.setAttribute( "value", "Confirmer");
 			
-		f.appendChild(_sid);
+		f.appendChild(conf);
+		
+		$a("#ajaxConfirmCall_submit").style.padding = "15px 6px";
+		$a("#ajaxConfirmCall_submit").style.cursor = "pointer";
+		$a("#ajaxConfirmCall_submit").style.fontWeight = "600";
+		$a("#ajaxConfirmCall_submit").style.color = "white";
+		$a("#ajaxConfirmCall_submit").style.background = "green";
+		$a("#ajaxConfirmCall_submit").style.textAlign = "center";
+		$a("#ajaxConfirmCall_submit").style.margin = "0 auto";
+		$a("#ajaxConfirmCall_submit").style.width = "250px";
 		
 		var cbtn = document.createElement("div");
 			cbtn.setAttribute( "id", "cancelBtn");
@@ -142,7 +151,9 @@ function displayConfirmModal( date ){
 			
 		con.appendChild(cbtn);
 			
-		$a("#cancelBtn").style.padding = "3px 6px";
+		$a("#cancelBtn").style.padding = "15px 6px";
+		$a("#cancelBtn").style.cursor = "pointer";
+		$a("#cancelBtn").style.fontWeight = "600";
 		$a("#cancelBtn").style.color = "white";
 		$a("#cancelBtn").style.background = "black";
 		$a("#cancelBtn").style.textAlign = "center";
@@ -162,6 +173,12 @@ function displayConfirmModal( date ){
 		$a("#ccff").style.zIndex = 10002;
 		$a("#ccff").style.margin = "auto";
 		$a("#ccff").style.display = "inline-block";
+		$a("#ccff").style.position = "fixed";
+		$a("#ccff").style.top = 0;
+		$a("#ccff").style.left = 0;
+		$a("#ccff").style.width = "100%";
+		$a("#ccff").style.height = "100%";
+		$a("#ccff").style.background = "#80808069";
 		
 		ModalExist = true;
 		
