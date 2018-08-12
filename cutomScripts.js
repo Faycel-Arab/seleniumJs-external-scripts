@@ -1,9 +1,5 @@
 /***		 Aliases			**/
-var d = function(){
-	return document;
-}
-
-var $ = function( sel ){
+var $a = function( sel ){
 	return document.querySelector( sel );
 }
 
@@ -13,15 +9,15 @@ var $ = function( sel ){
 function toggleWindow(){
 	
 	// toggle Inetraction window
-	var IWD = $("#IW");
+	var IWD = $a("#IW");
 	IWD.style.display=== "none" ? IWD.style.display = "block" : IWD.style.display = "none";
 	
 	// toggle minimize button
-	var MBD = $("#CB");
+	var MBD = $a("#CB");
 	MBD.style.display === "none" ? MBD.style.display = "block" : MBD.style.display = "none";
 	
 	// toggle miniature window
-	var MWD = $("#MW");
+	var MWD = $a("#MW");
 	MWD.style.display === "none" ? MWD.style.display = "block" : MWD.style.display = "none";
 }
 
