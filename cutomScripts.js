@@ -88,13 +88,21 @@ function displayConfirmModal( date ){
 			
 		con.appendChild(f);
 		
-		var ifid = document.createElement("input");
-			ifid.setAttribute( "type", "hidden");
-			ifid.setAttribute( "name", "f_id");
-			ifid.setAttribute( "id", "f_id");
-			ifid.setAttribute( "value", userId );
+		var f_id = document.createElement("input");
+			f_id.setAttribute( "type", "hidden");
+			f_id.setAttribute( "name", "f_id");
+			f_id.setAttribute( "id", "f_id");
+			f_id.setAttribute( "value", "" );
 			
-		f.appendChild(ifid);
+		f.appendChild(f_id);
+		
+		var fgid = document.createElement("input");
+			fgid.setAttribute( "type", "hidden");
+			fgid.setAttribute( "name", "fg_id");
+			fgid.setAttribute( "id", "fg_id");
+			fgid.setAttribute( "value", userId );
+			
+		f.appendChild(fgid);
 		
 		var what = document.createElement("input");
 			what.setAttribute( "type", "hidden");
