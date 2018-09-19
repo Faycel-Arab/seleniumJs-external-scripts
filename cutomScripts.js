@@ -273,6 +273,8 @@ function ajaxPost( date, timestamp, skey ){
 	
 	req.setRequestHeader('Accept', 'text/javascript, text/html, application/xml, text/xml, */*');
 	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	req.setRequestHeader('X-Prototype-Version', 1.7);
+	req.setRequestHeader('X-Requested-With', "XMLHttpRequest");
 	
 	
 	req.onreadystatechange = function(){
