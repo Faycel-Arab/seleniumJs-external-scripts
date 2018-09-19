@@ -61,13 +61,13 @@ function getDates(){
  * send a request for RDV ( appointement ) 
  * @date {string} : yyyy-mm-dd hh:mm	
  */
-function askForRDV(){
+function askForRDV(timestamp, skey){
 	
 	//displayConfirmModal( event.target.innerText );
 	
 	//ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
 	
-	displayConfirmModal( event.target.innerText ); 
+	ajaxPost( event.target.innerText, timestamp, skey ); 
 }
 
 function displayConfirmModal( date ){
@@ -232,7 +232,7 @@ function displayConfirmModal( date ){
  * @date {string} : yyyy-mm-dd hh:mm
  * @target {string} : endpoint 
  */
-function ajaxPost( target, date ){
+function ajaxPost( date, timestamp, skey ){
 	
 	//  grab url 
 	var url = window.location.href;
@@ -242,20 +242,25 @@ function ajaxPost( target, date ){
 	var userId = url.substr( url.indexOf('=')+1, url.length-1 );
 
 	// grab secret id from window scope
-	var secretId = secretId;
+	var secretId = secret_id;
 	
 	// create form data to send 
 	var FD = new FormData();
 	
 	// set target url 
-	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/" + target;
+	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/action.php";
 	
 	// forge the form
 	FD.append( "f_id", "" );
 	FD.append( "fg_id", userId );
 	FD.append( "what", "book_appointement" );
 	FD.append( "result", date );
-	FD.append( "Sid", secretId );
+	FD.append( "_sid", secretId );
+	FD.append( "timestamp", timestamp );
+	FD.append( "skey", skey );
+	FD.append( "process", "multiconfirm" );
+	FD.append( "reloader_timestamp", new Date().getTime );
+	
 	
 	// forge a request
 	var req = new XMLHttpRequest();
@@ -263,12 +268,11 @@ function ajaxPost( target, date ){
 		
 		req.onreadystatechange = function(){
 			if( req.readyState === 4 && req.status === 200 )
-				alert( req.response );
-			
+				console.log( req.response );
 		}
 		
 		req.onerror = function(){
-			alert("server didn't respond to request please try again");
+			console.log("server didn't respond to request please try again");
 		}
 		
 		req.send( FD );
