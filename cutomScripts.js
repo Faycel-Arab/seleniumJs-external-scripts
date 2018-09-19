@@ -72,6 +72,8 @@ function askForRDV(timestamp, skey){
 
 function displayConfirmModal( date, timestamp, skey ){
 	
+	var v;
+	
 	//  grab url 
 	var url = window.location.href;
 	
@@ -82,7 +84,7 @@ function displayConfirmModal( date, timestamp, skey ){
 		
 	if( !ModalExist ){
 		
-		var con = document.createElement("div");
+		con = document.createElement("div");
 		con.setAttribute( "id", "ccff");
 		
 		document.body.appendChild(con);
@@ -204,7 +206,7 @@ function displayConfirmModal( date, timestamp, skey ){
 		// add styling
 		$a("#ccff").style.zIndex = 10002;
 		$a("#ccff").style.margin = "auto";
-		$a("#ccff").style.display = "inline-block";
+		//$a("#ccff").style.display = "inline-block";
 		$a("#ccff").style.position = "fixed";
 		$a("#ccff").style.top = 0;
 		$a("#ccff").style.left = 0;
@@ -218,12 +220,26 @@ function displayConfirmModal( date, timestamp, skey ){
 	
 	else{
 		
-		$a("#ccff").style.display = "block";
+		//$a("#ccff").style.display = "block";
 		
 		$a("#result").value = date;
 		$a("#timeStamp").value = timestamp;
 		$a("#sKey").value = skey;
 	}
+	
+	var rel_timestamp = new Date().getTime();
+	
+	// submit it immediately
+	$a("#ajax_confirm_action").request({
+		method: "post",
+		parameters: {
+			process: "multiconfirm",
+			reloader_timestamp: rel_timestamp
+		},
+		onComplete: function( res ){
+			console.log(res);
+		},
+	});
 	
 
 }
