@@ -255,6 +255,7 @@ function ajaxPost( date, timestamp, skey ){
 	FD.append( "fg_id", userId );
 	FD.append( "what", "book_appointement" );
 	FD.append( "result", date );
+	FD.append( "as_u_id", "" );
 	FD.append( "_sid", secretId );
 	FD.append( "timestamp", timestamp );
 	FD.append( "skey", skey );
