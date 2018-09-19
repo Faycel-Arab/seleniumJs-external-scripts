@@ -199,6 +199,9 @@ function displayConfirmModal( date, timestamp, skey ){
 			$a("#ccff").style.display = "none";
 		});
 			
+		$a("#result").value = date;
+		$a("#timeStamp").value = timestamp;
+		$a("#sKey").value = skey;
 			
 			
 		f.appendChild(_sid);
@@ -206,7 +209,7 @@ function displayConfirmModal( date, timestamp, skey ){
 		// add styling
 		$a("#ccff").style.zIndex = 10002;
 		$a("#ccff").style.margin = "auto";
-		//$a("#ccff").style.display = "inline-block";
+		$a("#ccff").style.display = "none";
 		$a("#ccff").style.position = "fixed";
 		$a("#ccff").style.top = 0;
 		$a("#ccff").style.left = 0;
