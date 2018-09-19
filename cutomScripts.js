@@ -49,7 +49,7 @@ function getDates(){
 		DATES.push({
 			date: day,
 			time: time,
-			timeStamp: timeStamp
+			timeStamp: timeStamp,
 			sKey: sKey
 		}); 
 	});
