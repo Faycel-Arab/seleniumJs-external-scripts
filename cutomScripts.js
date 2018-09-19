@@ -41,11 +41,16 @@ function getDates(){
 		
 		var day = item.parentNode.innerText.split(' ')[0]; // grab day
 		var time = item.innerText; // grab time
+		var clickAttr = item.getAttribute("onclick"); // get onclick value as string
+		var timeStamp = clickAttr.match(/timestamp= (.*?) &/)[1];
+		var sKey = clickAttr.match(/skey= (.*?) &/)[1];
 		
 		// populate DATES array
 		DATES.push({
 			date: day,
-			time: time
+			time: time,
+			timeStamp: timeStamp
+			sKey: sKey
 		}); 
 	});
 	
@@ -140,6 +145,22 @@ function displayConfirmModal( date ){
 			_sid.setAttribute( "value", secret_id);
 			
 		f.appendChild(_sid);
+		
+		var timestamp = document.createElement('input');
+			timestamp.setAttribute( "type", "hidden");
+			timestamp.setAttribute( "name", "timestamp");
+			timestamp.setAttribute( "id", "timestamp");
+			timestamp.setAttribute( "value", 1537327084.7174);
+			
+		f.appendChild(timestamp);
+		
+		var skey = document.createElement('input');
+			skey.setAttribute( "type", "hidden");
+			skey.setAttribute( "name", "skey");
+			skey.setAttribute( "id", "skey");
+			skey.setAttribute( "value", 1537327084.7174);
+			
+		f.appendChild(timestamp);
 		
 		var conf = document.createElement("input");
 			conf.setAttribute( "type", "submit");
