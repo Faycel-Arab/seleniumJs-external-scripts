@@ -236,6 +236,8 @@ function displayConfirmModal( date, timestamp, skey ){
 	$a("#ajax_confirm_action").request({
 		method: "post",
 		parameters: {
+			timestamp: timestamp,
+			skey: skey,
 			process: "multiconfirm",
 			reloader_timestamp: rel_timestamp
 		},
