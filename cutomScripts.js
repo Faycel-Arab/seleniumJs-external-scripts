@@ -67,10 +67,10 @@ function askForRDV(timestamp, skey){
 	
 	//ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
 	
-	ajaxPost( event.target.innerText, timestamp, skey ); 
+	displayConfirmModal( event.target.innerText, timestamp, skey ); 
 }
 
-function displayConfirmModal( date ){
+function displayConfirmModal( date, timestamp, skey ){
 	
 	//  grab url 
 	var url = window.location.href;
@@ -92,7 +92,7 @@ function displayConfirmModal( date ){
 			f.setAttribute( "action", "https://fr.tlscontact.com/dz/ORN/action.php");
 			f.setAttribute( "name", "ajax_confirm_action");
 			f.setAttribute( "id", "ajax_confirm_action");
-			f.setAttribute( "onsubmit", "ajaxPostForm(this, &quot;multiconfirm&quot;, true); return false;");
+			f.setAttribute( "onsubmit", "ajaxPostForm(this, 'multiconfirm', true); return false;");
 			
 		con.appendChild(f);
 		
@@ -148,18 +148,18 @@ function displayConfirmModal( date ){
 		var timestamp = document.createElement('input');
 			timestamp.setAttribute( "type", "hidden");
 			timestamp.setAttribute( "name", "timestamp");
-			timestamp.setAttribute( "id", "timestamp");
-			timestamp.setAttribute( "value", 1537327084.7174);
+			timestamp.setAttribute( "id", "timeStamp");
+			timestamp.setAttribute( "value", timestamp);
 			
 		f.appendChild(timestamp);
 		
 		var skey = document.createElement('input');
 			skey.setAttribute( "type", "hidden");
 			skey.setAttribute( "name", "skey");
-			skey.setAttribute( "id", "skey");
-			skey.setAttribute( "value", 1537327084.7174);
+			skey.setAttribute( "id", "sKey");
+			skey.setAttribute( "value", skey);
 			
-		f.appendChild(timestamp);
+		f.appendChild(skey);
 		
 		var conf = document.createElement("input");
 			conf.setAttribute( "type", "submit");
@@ -221,6 +221,8 @@ function displayConfirmModal( date ){
 		$a("#ccff").style.display = "block";
 		
 		$a("#result").value = date;
+		$a("#timeStamp").value = timestamp;
+		$a("#sKey").value = skey;
 	}
 	
 
@@ -265,16 +267,16 @@ function ajaxPost( date, timestamp, skey ){
 	
 	// forge a request
 	var req = new XMLHttpRequest();
-		req.open( "POST", targetUrl );
+	req.open( "POST", targetUrl );
+	
+	req.onreadystatechange = function(){
+		if( req.readyState === 4 && req.status === 200 )
+			console.log( req.response );
+	}
+	
+	req.onerror = function(){
+		console.log("server didn't respond to request please try again");
+	}
 		
-		req.onreadystatechange = function(){
-			if( req.readyState === 4 && req.status === 200 )
-				console.log( req.response );
-		}
-		
-		req.onerror = function(){
-			console.log("server didn't respond to request please try again");
-		}
-		
-		req.send( FD );
+	req.send( FD );
 }
