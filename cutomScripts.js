@@ -67,7 +67,7 @@ function askForRDV(timestamp, skey){
 	
 	//ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
 	
-	displayConfirmModal( event.target.innerText, timestamp, skey ); 
+	ajaxPost( event.target.innerText, timestamp, skey ); 
 }
 
 function displayConfirmModal( date, timestamp, skey ){
@@ -249,6 +249,8 @@ function ajaxPost( date, timestamp, skey ){
 	// create form data to send 
 	var FD = new FormData();
 	
+	var rel_timestamp = new Date().getTime();
+	
 	// set target url 
 	var targetUrl = "https://"+window.location.hostname+"/dz/ORN/action.php";
 	
@@ -262,12 +264,16 @@ function ajaxPost( date, timestamp, skey ){
 	FD.append( "timestamp", timestamp );
 	FD.append( "skey", skey );
 	FD.append( "process", "multiconfirm" );
-	FD.append( "reloader_timestamp", new Date().getTime );
+	FD.append( "reloader_timestamp", rel_timestamp );
 	
 	
 	// forge a request
 	var req = new XMLHttpRequest();
 	req.open( "POST", targetUrl );
+	
+	req.setRequestheader('Accept', 'text/javascript, text/html, application/xml, text/xml, */*');
+	req.setRequestheader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	
 	
 	req.onreadystatechange = function(){
 		if( req.readyState === 4 && req.status === 200 )
