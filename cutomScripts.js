@@ -42,8 +42,8 @@ function getDates(){
 		var day = item.parentNode.innerText.split(' ')[0]; // grab day
 		var time = item.innerText; // grab time
 		var clickAttr = item.getAttribute("onclick"); // get onclick value as string
-		var timeStamp = clickAttr.match(/timestamp= (.*?) &/)[1];
-		var sKey = clickAttr.match(/skey= (.*?) &/)[1];
+		var timeStamp = clickAttr.match("timestamp=(.*?)&")[1];
+		var sKey = clickAttr.match("skey=(.*?)&")[1];
 		
 		// populate DATES array
 		DATES.push({
