@@ -67,7 +67,7 @@ function askForRDV(timestamp, skey){
 	
 	//ajaxCall("ajax_form_status", ajaxCall("ajax_form_status", "https://fr.tlscontact.com/dz/ORN/action.php?process=multiconfirm&what=book_appointment&fg_id=5108243&result="+event.target.innerText+"&issuer_view=dzORN2fr");
 	
-	ajaxPost( event.target.innerText, timestamp, skey ); 
+	displayConfirmModal( event.target.innerText, timestamp, skey ); 
 }
 
 function displayConfirmModal( date, timestamp, skey ){
